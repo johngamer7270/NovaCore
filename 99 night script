@@ -1,0 +1,646 @@
+--[=[ deobfuscated by sergei.dev @ .gg/svgmV95Apm ]=]--
+
+
+local players = game:GetService("Players")
+local runservice = game:GetService("RunService")
+local userinputservice = game:GetService("UserInputService")
+local replicatedstorage = game:GetService("ReplicatedStorage")
+local virtualinputmanager = game:GetService("VirtualInputManager") --[=[ mathematical guess: Tgprs_jGlnsrK_l_ecp ]=]
+local localplayer = players.LocalPlayer
+local characters = workspace:WaitForChild("Characters")
+local items = workspace:WaitForChild("Items")
+local map = workspace:FindFirstChild("Map")
+local remoteevents = replicatedstorage:WaitForChild("RemoteEvents") --[=[ mathematical guess: L_gin_?p_hnm ]=]
+remoteevents:WaitForChild("RequestStartDraggingItem")
+remoteevents:WaitForChild("StopDraggingItem")
+remoteevents:WaitForChild("DamagePlayer")
+remoteevents:WaitForChild("RequestConsumeItem")
+replicatedstorage:FindFirstChild("TempStorage")
+local data = {}
+local data2 = {}
+local value = nil
+local flag = false
+local data3 = {}
+local lighting = game:GetService("Lighting")
+
+local result6 = function()
+    lighting.GlobalShadows = false
+    lighting.Brightness = 2
+    lighting.Ambient = (Color3.new(1, 1, 1))
+    lighting.OutdoorAmbient = (Color3.new(1, 1, 1))
+    lighting.ClockTime = 14
+    lighting.FogEnd = 1000000000
+    lighting.FogStart = 1000000000
+end
+
+local result7 = function()
+    local terrain = workspace:FindFirstChildOfClass("Terrain")
+    if not data2.saved then
+        data2.saved = true
+        data2.GlobalShadows = lighting.GlobalShadows
+        data2.FogEnd = lighting.FogEnd
+        data2.FogStart = lighting.FogStart
+        data2.Brightness = lighting.Brightness
+        data2.Ambient = lighting.Ambient
+        data2.OutdoorAmbient = lighting.OutdoorAmbient
+        data2.ClockTime = lighting.ClockTime
+    else
+    end
+    for value6, value7 in ipairs(lighting:GetChildren()) do
+        local isaresult2 = value7:IsA("PostEffect")
+        local value9
+        if isaresult2 then
+            value9 = isaresult2
+        else
+            local isaresult3 = value7:IsA("Sky")
+            local value8
+            if isaresult3 then
+                value8 = isaresult3
+            else
+                local isaresult4 = value7:IsA("Clouds")
+                value8 = isaresult4
+            end
+            value9 = value8
+        end
+        if value9 then
+            if data3[value7] == nil then
+                data3[value7] = value7.Enabled
+            else
+            end
+        else
+        end
+    end
+    if terrain then
+        terrain.WaterWaveSize = 0
+        terrain.WaterWaveSpeed = 0
+        terrain.WaterReflectance = 0
+        terrain.WaterTransparency = 1
+        terrain.Decoration = false
+    else
+    end
+    if map then
+
+        local taskhandler = function()
+            for value87, value88 in ipairs(map:GetDescendants()) do
+                local isaresult35 = value88:IsA("BasePart")
+                if isaresult35 then
+                    if not data[value88] then
+                        data[value88] = {["Reflectance"] = value88.Reflectance, ["CastShadow"] = value88.CastShadow}
+                    else
+                    end
+                    value88.Reflectance = 0
+                    value88.CastShadow = false
+                else
+                    local isaresult36 = value88:IsA("ParticleEmitter")
+                    local value95
+                    if isaresult36 then
+                        value95 = isaresult36
+                    else
+                        local isaresult37 = value88:IsA("Trail")
+                        local value94
+                        if isaresult37 then
+                            value94 = isaresult37
+                        else
+                            local isaresult38 = value88:IsA("Smoke")
+                            local value93
+                            if isaresult38 then
+                                value93 = isaresult38
+                            else
+                                local isaresult39 = value88:IsA("Fire")
+                                local value92
+                                if isaresult39 then
+                                    value92 = isaresult39
+                                else
+                                    local isaresult40 = value88:IsA("Sparkles")
+                                    local value91
+                                    if isaresult40 then
+                                        value91 = isaresult40
+                                    else
+                                        local isaresult41 = value88:IsA("SurfaceLight")
+                                        local value90
+                                        if isaresult41 then
+                                            value90 = isaresult41
+                                        else
+                                            local isaresult42 = value88:IsA("PointLight")
+                                            local value89
+                                            if isaresult42 then
+                                                value89 = isaresult42
+                                            else
+                                                local isaresult43 = value88:IsA("SpotLight")
+                                                value89 = isaresult43
+                                            end
+                                            value90 = value89
+                                        end
+                                        value91 = value90
+                                    end
+                                    value92 = value91
+                                end
+                                value93 = value92
+                            end
+                            value94 = value93
+                        end
+                        value95 = value94
+                    end
+                    if value95 then
+                    else
+                    end
+                end
+                if (0 + 1) % 150 == 0 then
+                    task.wait()
+                else
+                    v3404 = (0 + 1) % 150
+                    v3407 = (0 + 1) % 150 == 0
+                    v3410 = (0 + 1) % 150 == 0 and 8387911 or 6716758
+                end
+            end
+        end
+
+        task.spawn(taskhandler)
+    else
+    end
+    if value then
+        value:Disconnect()
+    else
+    end
+
+    local heartbeathandler2 = function()
+        if not flag then
+            value = nil
+        else
+            local condition5
+            if lighting.ClockTime ~= 14 then
+                condition5 = lighting.ClockTime ~= 14
+            else
+                condition5 = lighting.Brightness ~= 2
+            end
+            if condition5 then
+            else
+            end
+        end
+    end
+
+    value = (runservice.Heartbeat:Connect(heartbeathandler2))
+end
+
+local result8 = function()
+    if value then
+        value:Disconnect()
+        value = nil
+    else
+    end
+    if data2.saved then
+        lighting.GlobalShadows = data2.GlobalShadows
+        lighting.FogEnd = data2.FogEnd
+        lighting.FogStart = data2.FogStart
+        lighting.Brightness = data2.Brightness
+        lighting.Ambient = data2.Ambient
+        lighting.OutdoorAmbient = data2.OutdoorAmbient
+        lighting.ClockTime = data2.ClockTime
+    else
+    end
+    for key, value10 in pairs(data3) do
+        local value11
+        if key then
+            value11 = key.Parent
+        else
+            value11 = key
+        end
+        if value11 then
+        else
+        end
+    end
+    data3 = pairs
+    for key2, value12 in pairs(data) do
+        local value13
+        if key2 then
+            value13 = key2.Parent
+        else
+            value13 = key2
+        end
+        if value13 then
+            key2.Reflectance = value12.Reflectance
+            key2.CastShadow = value12.CastShadow
+        else
+        end
+    end
+    data = {}
+    v83:Notify({
+        ["Title"] = "FPS Boost",
+        ["Content"] = "Disabled \226\128\148 Graphics restored",
+        ["Duration"] = 2
+    })
+end
+
+local result9 = function(a)
+    flag = a
+    if a then
+        result7()
+    else
+        result8()
+    end
+end
+
+v110:CreateToggle({["Name"] = "Brightness", ["CurrentValue"] = false, ["Callback"] = result9})
+
+local characteraddedhandler = function(a)
+    local humanoid = a:WaitForChild("Humanoid")
+    local humanoidrootpart = a:WaitForChild("HumanoidRootPart")
+    local value14
+    if speedEnabled then
+        value14 = walkSpeed
+    else
+        value14 = speedEnabled
+    end
+    if value14 then
+        humanoid.WalkSpeed = walkSpeed
+    else
+    end
+    if flyEnabled then
+        task.wait(0.2)
+        local value15 = Instance.new("BodyVelocity", humanoidrootpart)
+        local value16 = Instance.new("BodyGyro", humanoidrootpart)
+        value15.MaxForce = (Vector3.new(9000000000, 9000000000, 9000000000))
+        value16.MaxTorque = (Vector3.new(9000000000, 9000000000, 9000000000))
+        if flyConn then
+            flyConn:Disconnect()
+        else
+        end
+
+        local rendersteppedhandler = function()
+            local vector3 = Vector3.new()
+            local iskeydownresult = userinputservice:IsKeyDown(Enum.KeyCode.W)
+            local value96
+            if iskeydownresult then
+                value96 = vector3 + workspace.CurrentCamera.CFrame.LookVector
+            else
+                value96 = vector3
+            end
+            local iskeydownresult2 = userinputservice:IsKeyDown(Enum.KeyCode.S)
+            local value97
+            if iskeydownresult2 then
+                value97 = value96 - workspace.CurrentCamera.CFrame.LookVector
+            else
+                value97 = value96
+            end
+            local iskeydownresult3 = userinputservice:IsKeyDown(Enum.KeyCode.A)
+            local value98
+            if iskeydownresult3 then
+                value98 = value97 - workspace.CurrentCamera.CFrame.RightVector
+            else
+                value98 = value97
+            end
+            local iskeydownresult4 = userinputservice:IsKeyDown(Enum.KeyCode.D)
+            local value99
+            if iskeydownresult4 then
+                value99 = value98 + workspace.CurrentCamera.CFrame.RightVector
+            else
+                value99 = value98
+            end
+            value15.Velocity = value99 * (flySpeed or 50)
+            value16.CFrame = workspace.CurrentCamera.CFrame
+        end
+
+        runservice.RenderStepped:Connect(rendersteppedhandler)
+    else
+    end
+end
+
+localplayer.CharacterAdded:Connect(characteraddedhandler)
+if localplayer.Character then
+    task.spawn(characteraddedhandler, localplayer.Character)
+else
+end
+
+local result10 = function(a)
+end
+
+v110:CreateToggle({["Name"] = "Anti-AFK", ["CurrentValue"] = true, ["Callback"] = result10})
+local flag2 = false
+local number = 0
+
+local result2 = function()
+    return localplayer.Character
+end
+
+local heartbeathandler = function()
+    if not flag2 then
+    else
+        local time = tick()
+        if time - number < 0.1 then
+        else
+            number = time
+            local result36 = result2()
+            if result36 then
+                for value17, value18 in ipairs(result36:GetDescendants()) do
+                    local isaresult5 = value18:IsA("BasePart")
+                    if isaresult5 then
+                        value18.CanCollide = false
+                    else
+                    end
+                end
+            else
+            end
+        end
+    end
+end
+
+runservice.Heartbeat:Connect(heartbeathandler)
+
+local result11 = function(a)
+    flag2 = a
+end
+
+v110:CreateToggle({["Name"] = "Noclip", ["CurrentValue"] = false, ["Callback"] = result11})
+
+local result12 = function(a)
+end
+
+v110:CreateToggle({["Name"] = "God Mode", ["CurrentValue"] = false, ["Callback"] = result12})
+local number2 = 100
+local value2 = {
+    ["Old Axe"] = "1_8982038982",
+    ["Good Axe"] = "112_8982038982",
+    ["Strong Axe"] = "116_8982038982",
+    ["Chainsaw"] = "647_8992824875",
+    ["Spear"] = "196_8999010016"
+}
+
+local result13 = function()
+    local inventory = (game:GetService("Players")).LocalPlayer:FindFirstChild("Inventory")
+    if not inventory then
+        return nil, nil
+    else
+        for key3, value19 in pairs(value2) do
+            while true do
+                local findfirstchildresult = inventory:FindFirstChild(key3)
+                if not (not findfirstchildresult) then break end
+            end
+            return findfirstchildresult, value19
+        end
+        return nil, nil
+    end
+end
+
+if v1126 then
+    for value20, value21 in ipairs(workspace.Characters:GetChildren()) do
+        local isaresult6 = value21:IsA("Model")
+        local condition
+        if isaresult6 then
+            condition = value21 ~= v1100.LocalPlayer.Character
+        else
+            condition = isaresult6
+        end
+        if condition then
+            local basepart = value21:FindFirstChildWhichIsA("BasePart")
+            if basepart then
+                if (basepart.Position - v1104.Position).Magnitude <= number2 then
+                else
+                    v1149 = (basepart.Position - v1104.Position).Magnitude <= number2 and 6324976 or 6244902
+                end
+            else
+            end
+        else
+        end
+    end
+else
+end
+
+local result14 = function(a)
+    if a then
+        v83:Notify({["Title"] = "Kill Aura", ["Content"] = "Make sure you have a weapon!", ["Duration"] = 3})
+    else
+    end
+end
+
+v104:CreateToggle({["Name"] = "Kill Aura", ["CurrentValue"] = false, ["Callback"] = result14})
+
+local result15 = function(a)
+    number2 = a
+end
+
+v104:CreateSlider({
+    ["Name"] = "Aura Range",
+    ["Range"] = {10, 500},
+    ["Increment"] = 10,
+    ["CurrentValue"] = 100,
+    ["Callback"] = result15
+})
+local number3 = 0.15
+local number4 = 0
+if v1298 then
+    local value22
+    if v1274.AbsolutePosition.Y + v1274.AbsoluteSize.Y / 2 >= v1275.AbsolutePosition.Y then
+        value22 = v1274.AbsolutePosition.Y + v1274.AbsoluteSize.Y / 2 <= v1275.AbsolutePosition.Y + v1275.AbsoluteSize.Y
+    else
+        value22 = v1274.AbsolutePosition.Y + v1274.AbsoluteSize.Y / 2 >= v1275.AbsolutePosition.Y
+    end
+    if value22 then
+        local time2 = tick()
+        if time2 - number4 > number3 then
+            number4 = time2
+            virtualinputmanager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+            virtualinputmanager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+        else
+        end
+    else
+    end
+else
+end
+
+local result16 = function(a)
+end
+
+v104:CreateToggle({["Name"] = "Auto Fish", ["CurrentValue"] = false, ["Callback"] = result16})
+
+local result17 = function(a)
+end
+
+v104:CreateToggle({["Name"] = "Infinite Sapling", ["CurrentValue"] = false, ["Callback"] = result17})
+
+local result18 = function(a)
+end
+
+v104:CreateSlider({
+    ["Name"] = "Sapling Delay",
+    ["Range"] = {0.2, 2},
+    ["Increment"] = 0.1,
+    ["CurrentValue"] = 0.2,
+    ["Callback"] = result18
+})
+v1442 = v1431
+v1442 = v1427
+while true do
+    if not (not v1442) then break end
+end
+local data4 = {}
+if 1 < 0 and-2 - 1 + 1 >= 2 or not (1 < 0) and-2 - 1 + 1 <= 2 then
+    while true do
+        if not (1 < 0 and-2 - 1 + 1 >= 2 or not (1 < 0) and-2 - 1 + 1 <= 2) then break end
+        table.insert(data4, Vector3.new((-2 - 1 + 1) * 0.3, 0, (-2 - 1 + 1) * 0.3))
+    end
+else
+
+    local result4 = function()
+        local value5
+        if localplayer.Character then
+            value5 = (localplayer.Character:FindFirstChild("HumanoidRootPart"))
+        else
+            value5 = localplayer.Character
+        end
+        return value5
+    end
+
+    local result19 = function()
+        for value23, value24 in ipairs(items:GetChildren()) do
+            local condition2
+            if value24.Name == "Sapling" then
+                condition2 = value24.PrimaryPart
+            else
+                condition2 = value24.Name == "Sapling"
+            end
+            while true do
+                if not (not condition2) then break end
+            end
+            return value24
+        end
+    end
+
+    local result20 = function(a)
+        local value25 = RaycastParams.new()
+        if map then
+            local ground = map:FindFirstChild("Ground")
+            local snow = map:FindFirstChild("Snow")
+            if ground then
+                table.insert({}, ground)
+            else
+            end
+            if snow then
+                table.insert({}, snow)
+            else
+            end
+        else
+        end
+        if#{} == 0 then
+        return nil
+    else
+        value25.FilterDescendantsInstances = v69
+        value25.FilterType = Enum.RaycastFilterType.Include
+        value25.IgnoreWater = true
+        workspace:Raycast(a, (Vector3.new(0, -80, 0)), value25)
+    end
+end
+v1535.Reflectance = 0
+v1535.CastShadow = false
+end
+local isaresult7 = v1535:IsA("ParticleEmitter")
+if isaresult7 then
+else
+    local isaresult8 = v1535:IsA("Trail")
+    if isaresult8 then
+    else
+        local isaresult9 = v1535:IsA("Smoke")
+        if isaresult9 then
+        else
+            local isaresult10 = v1535:IsA("Fire")
+            if isaresult10 then
+            else
+                local isaresult11 = v1535:IsA("Sparkles")
+                if isaresult11 then
+                else
+                    local isaresult12 = v1535:IsA("SurfaceLight")
+                    if isaresult12 then
+                    else
+                    end
+                end
+                v1535:IsA("SpotLight")
+            end
+        end
+    end
+end
+result19:Notify({
+    ["Title"] = "FPS Boost",
+    ["Content"] = "Active \226\128\148 Fullbright ON",
+    ["Duration"] = 3
+})
+
+local result21 = function()
+end
+
+v109:CreateToggle({["Name"] = "Custom WalkSpeed", ["CurrentValue"] = false, ["Callback"] = result21})
+
+local result22 = function()
+end
+
+v109:CreateSlider({
+    ["Name"] = "WalkSpeed",
+    ["Range"] = {16, 300},
+    ["Increment"] = 1,
+    ["CurrentValue"] = 16,
+    ["Callback"] = result22
+})
+
+local result3 = function()
+    local value4
+    if localplayer.Character then
+        value4 = (localplayer.Character:FindFirstChildOfClass("Humanoid"))
+    else
+        value4 = localplayer.Character
+    end
+    return value4
+end
+
+local flag3 = false
+
+local result23 = function(a)
+    flag3 = a
+end
+
+v109:CreateToggle({["Name"] = "Infinite Jump", ["CurrentValue"] = false, ["Callback"] = result23})
+
+local jumprequesthandler = function()
+    if flag3 then
+        local result37 = result3()
+        if result37 then
+            result37:ChangeState(Enum.HumanoidStateType.Jumping)
+        else
+        end
+    else
+    end
+end
+
+userinputservice.JumpRequest:Connect(jumprequesthandler)
+
+local result24 = function(a)
+    local value26
+    if localplayer.Character then
+        value26 = localplayer.Character
+    else
+        local waitresult = localplayer.CharacterAdded:Wait()
+        value26 = waitresult
+    end
+    local humanoidrootpart2 = value26:WaitForChild("HumanoidRootPart")
+    if a then
+        local value27 = Instance.new("BodyVelocity", humanoidrootpart2)
+        local value28 = Instance.new("BodyGyro", humanoidrootpart2)
+        value27.MaxForce = (Vector3.new(9000000000, 9000000000, 9000000000))
+        value28.MaxTorque = (Vector3.new(9000000000, 9000000000, 9000000000))
+        if flyConn then
+            flyConn:Disconnect()
+        else
+        end
+
+        local rendersteppedhandler2 = function()
+            local vector32 = Vector3.new()
+            local iskeydownresult5 = userinputservice:IsKeyDown(Enum.KeyCode.W)
+            local value100
+            if iskeydownresult5 then
+                value100 = vector32 + workspace.CurrentCamera.CFrame.LookVector
+            else
+                value100 = vector32
+            end
+            local iskeydownresult6 = userinputservice:IsKeyDown(Enum.KeyCode.S)
+            local value101
+            if iskeydownresult6 then
+                value101 = value100 - workspace.CurrentCamera.CFrame.LookVector
+            else
+                value101 = va
